@@ -1,1 +1,25 @@
 
+<html>
+
+<head>
+    <title>Simple Web Service</title>
+</head>
+
+<body>
+    <h1>Message Board</h1>
+    <ul id="messages"></ul>
+    <script>
+        fetch('/api/messages')
+            .then(response => response.json())
+            .then(data => {
+                const list = document.getElementById('messages');
+                data.forEach(msg => {
+                    const li = document.createElement('li');
+                    li.textContent = msg.text;
+                    list.appendChild(li);
+                });
+            });
+    </script>
+</body>
+
+</html>
